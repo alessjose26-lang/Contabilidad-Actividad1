@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mural Digital: Consignaciones vs. Ventas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f2922;
+            --text-light: #f5eedc;
+            --accent-gold: #d4af37;
+            --card-green: #e9f5e9;
+            --card-red: #f8e6e3;
+            --card-blue: #e3f0f9;
+            --card-yellow: #f8eed1;
+            --text-dark: #1a1a1a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px);
+            background-size: 25px 25px;
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 50px auto;
+        }
+
+        .header-kicker {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #b0c4b1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .nav-pills {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: rgba(255,255,255,0.1);
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .pill:hover {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            border-color: var(--accent-gold);
+        }
+
+        .section {
+            max-width: 1100px;
+            margin: 0 auto 70px auto;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: #ffffff;
+        }
+
+        .section-desc {
+            color: #b0c4b1;
+            margin-bottom: 30px;
+            font-size: 1rem;
+            max-width: 800px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 6px;
+            padding: 30px;
+            color: var(--text-dark);
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Thumbtack effect */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ffcfb3, #c55a4e, #591b16);
+            box-shadow: 0 4px 4px rgba(0,0,0,0.3), inset 0 -2px 4px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+
+        .card.green { background-color: var(--card-green); }
+        .card.red { background-color: var(--card-red); }
+        .card.blue { background-color: var(--card-blue); }
+        .card.yellow { background-color: var(--card-yellow); }
+
+        .card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            color: #222;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .card p strong {
+            color: #000;
+        }
+
+        .footer-info {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #88a096;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-kicker">MURAL DIGITAL · CONTABILIDAD IV</div>
+        <h1>Consignaciones vs.<br>Ventas de Mercancía</h1>
+        <p>Análisis de Transferencia de Control, Flujos Contables y Tratamiento Financiero bajo VEN-NIF (Caso Distribuidora El Faro, C.A.)</p>
+    </div>
+
+    <div class="nav-pills">
+        <a href="#analisis" class="pill">1 · ANÁLISIS GERENCIAL</a>
+        <a href="#flujo" class="pill">2 · FLUJO CONTABLE</a>
+        <a href="#matriz" class="pill">3 · RESPONSABILIDADES</a>
+        <a href="#etica" class="pill">4 · ÉTICA PROFESIONAL</a>
+    </div>
+
+    <!-- Sección 1 -->
+    <div id="analisis" class="section">
+        <div class="section-title">
+            <span class="badge">01</span>
+            <h2>Desmonte del Argumento de la Gerencia</h2>
+        </div>
+        <p class="section-desc">¿Por qué el simple "movimiento físico" no constituye una venta? Análisis basado en la NIIF 15 / VEN-NIF PYMES aplicadas al contrato de Distribuidora El Faro, C.A.</p>
+        
+        <div class="grid">
+            <div class="card green">
+                <h3>Control y Riesgos</h3>
+                <p><strong>NIIF 15 (VEN-NIF):</strong> El ingreso por venta se reconoce solo al transferir el <i>control</i> y los riesgos al cliente. La salida del almacén central no transfiere automáticamente la propiedad si el receptor actúa como intermediario.</p>
+            </div>
+            <div class="card red">
+                <h3>Cláusula 1: Sin obligación de pago</h3>
+                <p><strong>Condición:</strong> El receptor no asume el pago hasta que venda al consumidor final.<br><br><strong>Efecto:</strong> No existe una cuenta por cobrar firme. El riesgo de crédito sigue siendo de la Distribuidora.</p>
+            </div>
+            <div class="card blue">
+                <h3>Cláusula 2: Devolución (90 días)</h3>
+                <p><strong>Condición:</strong> Derecho a devolver el inventario no vendido sin penalidad.<br><br><strong>Efecto:</strong> Confirma que es una consignación. Si no hay venta, el activo regresa sin generar flujo de efectivo.</p>
+            </div>
+            <div class="card yellow">
+                <h3>Cláusula 3: Control de Precio</h3>
+                <p><strong>Condición:</strong> La Distribuidora fija el precio y el tercero cobra comisión.<br><br><strong>Efecto:</strong> El receptor actúa jurídicamente como un <i>Agente (Comisionista)</i>, prestando un servicio comercial, no como el propietario (Principal).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección 2 -->
+    <div id="flujo" class="section">
+        <div class="section-title">
+            <span class="badge">02</span>
+            <h2>Flujo Contable Comparativo</h2>
+        </div>
+        <p class="section-desc">Esquema de tratamiento en libros: Venta a Crédito firme vs. Consignación (Comisión).</p>
+        
+        <div class="grid" style="grid-template-columns: 1fr 1fr;">
+            <div class="card blue">
+                <h3>Venta a Crédito</h3>
+                <p><strong>1. Despacho:</strong> Se reconoce ingreso.<br>
+                Débito: Cuentas por Cobrar.<br>Crédito: Ventas.<br>
+                Débito: Costo de Ventas / Crédito: Inventario.</p>
+                <br>
+                <p><strong>2. Riesgo:</strong> Transferido inmediatamente al comprador.</p>
+                <br>
+                <p><strong>3. Cierre de Ejercicio:</strong> Se refleja como <i>Cuentas por Cobrar Comerciales</i> (Activo).</p>
+            </div>
+            <div class="card yellow">
+                <h3>Consignación (Envío a Comisionista)</h3>
+                <p><strong>1. Despacho:</strong> NO genera ingreso.<br>
+                Débito: Inventario en Consignación.<br>Crédito: Inventario (Almacén).</p>
+                <br>
+                <p><strong>2. Venta final:</strong> Con la "Cuenta de Venta":<br>
+                Débito: Banco / Gasto Comisión.<br>Crédito: Ingresos por Ventas.</p>
+                <br>
+                <p><strong>3. Cierre de Ejercicio:</strong> Se mantiene como <i>Inventario en Consignación</i> (Activo de la Distribuidora).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección 3 -->
+    <div id="matriz" class="section">
+        <div class="section-title">
+            <span class="badge">03</span>
+            <h2>Matriz de Responsabilidades</h2>
+        </div>
+        <p class="section-desc">Obligaciones legales y contables que asume el Comisionista en Barquisimeto frente a la Distribuidora.</p>
+        
+        <div class="grid">
+            <div class="card green">
+                <h3>a. Segregación del Inventario</h3>
+                <p>El comisionista no es dueño. Debe registrar en <strong>Cuentas de Orden</strong> (Mercancías Recibidas en Consignación) y separar físicamente las plantas eléctricas de su inventario propio para evitar embargos o confusiones.</p>
+            </div>
+            <div class="card blue">
+                <h3>b. Rendir Cuenta y Líquido Producto</h3>
+                <p>Está obligado a emitir la <strong>Cuenta de Venta</strong> detallando: unidades vendidas, monto cobrado, deducción de su comisión y gastos (fletes). El saldo neto es el "Líquido Producto" que debe remitir a El Faro, C.A.</p>
+            </div>
+            <div class="card red">
+                <h3>c. Deterioro o Pérdida</h3>
+                <p>El comisionista asume la pérdida si ocurre por su <strong>negligencia o imprudencia</strong> en la custodia. Sin embargo, si es por caso fortuito, fuerza mayor o vicio del bien, la pérdida recae sobre la Distribuidora.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección 4 -->
+    <div id="etica" class="section">
+        <div class="section-title">
+            <span class="badge">04</span>
+            <h2>Conclusión y Ética Profesional</h2>
+        </div>
+        
+        <div class="grid" style="grid-template-columns: 1fr;">
+            <div class="card yellow">
+                <h3>Dictamen del Contador Senior</h3>
+                <p>La intención de la gerencia de registrar una consignación como venta para <strong>inflar los indicadores de rentabilidad</strong> y asegurar un crédito bancario constituye una grave alteración a la información financiera. El simple traslado físico no transfiere los riesgos y beneficios de la propiedad.</p><br>
+                <p>Bajo la <strong>VEN-NIF</strong>, la propiedad sigue siendo de Distribuidora El Faro, C.A. Ceder ante esta presión gerencial vulnera la ética, la fe pública y la transparencia. El asiento debe ser reversado obligatoriamente y los activos deben permanecer clasificados como <i>Inventario en Consignación</i>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-info">
+        <p><strong>Autor:</strong> Alessandro José Gonzalez Timaure (C.I.: V-29.639.726) | <strong>Cátedra:</strong> Contabilidad IV (Sección 20)</p>
+    </div>
+
+</body>
+</html>
